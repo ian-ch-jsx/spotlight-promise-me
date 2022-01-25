@@ -26,14 +26,14 @@ export const fetchCharacters = () => {
 export async function totoroCharacters() {
   const resp = await fetch('https://ghibliapi.herokuapp.com/people');
   const data = await resp.json();
-  console.log('characters', data);
+
   const allCharacters = data.map((character) => ({
-    characters: character.name,
+    characters: character,
   }));
   const totoroCharacters = allCharacters.filter(
-    (allCharacters) =>
-      allCharacters.films ==
+    (allCharacter) =>
+      allCharacter.characters.films[0] ===
       'https://ghibliapi.herokuapp.com/films/58611129-2dbc-4a81-a72f-77ddfc1b1b49'
   );
-  console.log('crappity crap', totoroCharacters);
+  console.log('Totoro Characters', totoroCharacters);
 }
